@@ -5,6 +5,8 @@ const User = require('./models/user');
 const Message = require('./models/message')
 
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 // Mongoose
 
@@ -18,26 +20,21 @@ db.once('open', function() {
   console.log('Connected to MongoDB!');
 });
 
-async function newUser() {
-    const user = new User({name: 'luka', password: 'test'})
-    await user.save()
-}
+app.post('/register', (req, res) => {
+    console.log('hit')
 
-newUser();
+    const user = new User({
+        username: req.body.username,
+        password: req.body.password
+    });
 
-async function newMsg() {
-    const msg = new Message({msg: 'test'})
-    await msg.save()
-}
-
-newMsg();
-
-
-
-// Express
-
-app.get('/api', (req, res) => {
-    res.json({ 'users': ['userOne', 'userTwo', 'userThree', 'userFour']})
+    user.save((err) => {
+        if(err) {
+            res.status(500).json({ msg: 'Error registering new user'})
+        } else {
+            // res.json({ msg: 'User successfully created'})
+        }
+    })
 })
 
 app.listen(5000, () => console.log('Server started on port 5000'));
