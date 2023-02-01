@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import RegisterForm from './components/RegisterForm';
+import { Navigate } from 'react-router-dom';
 
 function App() {
   const [backendData, setBackendData] = useState({
     username: '',
     password: '',
   })
+
+  const [isRegistered, setIsRegistered] = useState(false);
 
   // useEffect(() => {
   //   fetch('/api').then(
@@ -41,13 +44,14 @@ function App() {
     })
     .then((response) => response.json())
     .then((result) => {
+      setIsRegistered(true);
       console.log(result)
     })
   }
 
   return (
     <div>
-      <RegisterForm submitHandler={handleSubmit} changeHandler={handleChange}/>
+      {isRegistered ? (<Navigate replace to='/login'/>) : (<RegisterForm submitHandler={handleSubmit} changeHandler={handleChange}/>)}
     </div>
   )
 };

@@ -22,6 +22,7 @@ function RegisterForm(props) {
                 </div>
                 <input type='submit' value='Register!'/>
             </form>
+            <button>Login!</button>
         </div>
     )
 }
