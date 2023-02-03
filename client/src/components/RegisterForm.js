@@ -16,13 +16,15 @@ function RegisterForm(props) {
             <form onSubmit={submitHandler}>
                 <div className='input-wrapper'>
                     <label htmlFor='username' >Username</label>
-                    <input type='text' name='username' onChange={changeHandler}/>
+                    <input type='text' name='username' required onChange={changeHandler}/>
                     <label htmlFor='password'>Password</label>
-                    <input type='password' name='password' onChange={changeHandler}/>
+                    <input type='password' name='password' required onChange={changeHandler}/>
                 </div>
                 <input type='submit' value='Register!'/>
             </form>
-            <button>Login!</button>
+            <a href="/loginPage">
+                <button>Login!</button>
+            </a>
         </div>
     )
 }

@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import RegisterForm from './components/RegisterForm';
 import { Navigate } from 'react-router-dom';
+import axios from 'axios';
+
+axios.defaults.baseURL = 'http://localhost:5000'
 
 function App() {
-  const [backendData, setBackendData] = useState({
+  const [userDetails, setUserDetails] = useState({
     username: '',
     password: '',
   })
@@ -22,36 +25,51 @@ function App() {
 
   const handleChange = (input) => {
     if(input.name === 'username') {
-      setBackendData({
+      setUserDetails({
         username: input.value,
-        password: backendData.password,
+        password: userDetails.password,
       })
     } else {
-      setBackendData({
-        username: backendData.username,
+      setUserDetails({
+        username: userDetails.username,
         password: input.value,
       })
     }
   }
 
   const handleSubmit = (event) => {
-    fetch('/register', {
-      method: "POST",
-      headers: {
-        'Content-type': 'application/json'
-      },
-      body: JSON.stringify(backendData)
-    })
-    .then((response) => response.json())
-    .then((result) => {
-      setIsRegistered(true);
-      console.log(result)
-    })
+
+    axios.post('/register', userDetails)
+      .then(res => {
+        console.log(res.data)
+        setIsRegistered(true);
+      })
+      .catch(err => {
+        console.log(err.response.data)
+      })
+
+
+    // fetch('/register', {
+    //   method: "POST",
+    //   headers: {
+    //     'Content-type': 'application/json'
+    //   },
+    //   body: JSON.stringify(userDetails)
+    // })
+    // .then((response) => response.json())
+    // .then((result) => {
+    //   if(result.err) {
+    //     console.log('there is an error', result.err)
+    //   } else{
+    //     setIsRegistered(true);
+    //     console.log(result)
+    //   }
+    // })
   }
 
   return (
     <div>
-      {isRegistered ? (<Navigate replace to='/login'/>) : (<RegisterForm submitHandler={handleSubmit} changeHandler={handleChange}/>)}
+      {isRegistered ? (<Navigate replace to='/loginPage'/>) : (<RegisterForm submitHandler={handleSubmit} changeHandler={handleChange}/>)}
     </div>
   )
 };
