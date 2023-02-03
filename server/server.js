@@ -35,21 +35,18 @@ app.use('/', require('./routes'))
 
 // Connect to MongoDB
 
-dbConnect()
-
-app.post('/log', (req, res) => {
-    console.log(req)
-})
+dbConnect();
 
 // free endpoint
 app.get("/free-endpoint", (req, res) => {
-    res.json({ message: "You are free to access me anytime" });
+    res.json({ msg: "You are free to access me anytime" });
 });
   
 // authentication endpoint
 app.get("/chat", auth, (req, res) => {
-    res.json({ message: "You are authorized to access me" });
+    console.log(req.headers)
+    res.json({ msg: "You are authorized to access me" });
 });
 
 
-app.listen(PORT, () => console.log('Server started on port 5000'));
+app.listen(PORT, () => console.log(`Server started on port: ${PORT}`));

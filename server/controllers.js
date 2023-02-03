@@ -4,6 +4,7 @@ const saltRounds = 10;
 
 const mongoose = require('mongoose');
 const User = require('./models/user');
+const Message = require('./models/message')
 
 exports.register = async (req, res) => {
 
@@ -64,5 +65,19 @@ exports.login = async (req, res) => {
         .catch((err) => {
             res.status(404).send({ msg: 'Username not found', err })
         })
-
 }
+
+exports.msg = async (req, res) => {
+    const msg = new Message({
+        msg: req.body.msg,
+        userId: req.body.id,
+    })
+
+    msg.save()
+        .then((result) => {
+            res.status(201).send({ msg: 'Message sent', result });
+        })
+        .catch((err) => {
+            res.status(500).send({ msg: 'Error sending message', err });
+        })
+} 

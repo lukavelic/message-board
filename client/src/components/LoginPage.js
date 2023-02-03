@@ -9,8 +9,13 @@ function LoginPage() {
     const [userDetails, setUserDetails] = useState({});
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+    // if(cookies.get('TOKEN')) {
+    //     return <Navigate replace to='/chat'/>
+    // }
+
     const handleSubmit = (event) => {
-        console.log('hit login')
+        // console.log('hit login')
+        console.log(cookies.cookies.TOKEN)
 
         event.preventDefault();
 
@@ -26,6 +31,8 @@ function LoginPage() {
 
                 setIsLoggedIn(true);
                 axios.defaults.headers.common['Authorization'] = 'Bearer' + res.data.token;
+
+                console.log(res)
                 window.location.href = "/chat";
             })
             .catch(err => {
@@ -76,7 +83,7 @@ function LoginPage() {
 
     return (
         <div>
-            {isLoggedIn ? (<Navigate replace to='/chat'/>) : (
+            {isLoggedIn ? (<Navigate to='/chat'/>) : (
                 <div>
                     <form onSubmit={handleSubmit}>
                         <div className='input-wrapper'>
