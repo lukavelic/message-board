@@ -36,16 +36,23 @@ app.use('/', require('./routes'))
 // Connect to MongoDB
 
 dbConnect();
-
-// free endpoint
-app.get("/free-endpoint", (req, res) => {
-    res.json({ msg: "You are free to access me anytime" });
-});
   
 // authentication endpoint
 app.get("/chat", auth, (req, res) => {
-    console.log(req.headers)
-    res.json({ msg: "You are authorized to access me" });
+    // let msgs;
+
+    Message.find({}, (err, docs) => {
+        if(err) {
+            return res.send(err)
+        } else {
+            res.json(docs)
+        }
+    })
+    // .then(
+    //     res.json({ msg: "You are authorized to access me", msgs })
+    // )
+
+    // res.json({ msg: "You are authorized to access me"});
 });
 
 

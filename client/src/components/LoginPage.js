@@ -36,7 +36,7 @@ function LoginPage() {
                 window.location.href = "/chat";
             })
             .catch(err => {
-                console.log(err.response.data)
+                console.log(err)
             })
 
         // fetch('/login', {

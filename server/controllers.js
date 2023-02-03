@@ -68,9 +68,11 @@ exports.login = async (req, res) => {
 }
 
 exports.msg = async (req, res) => {
+    console.log(req.body)
+
     const msg = new Message({
         msg: req.body.msg,
-        userId: req.body.id,
+        userId: req.body.userId,
     })
 
     msg.save()
