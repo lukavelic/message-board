@@ -3,6 +3,7 @@ import './Chat.css';
 import Cookies from 'universal-cookie';
 import { Navigate } from "react-router-dom";
 import axios from 'axios';
+import Header from './Header';
 
 const cookies = new Cookies();
 
@@ -52,7 +53,8 @@ function Chat() {
 
         axios.post('/chat/send', newMessage)
             .then(res => {
-                console.log(res.data)
+                console.log(res.data);
+                setNewMessage({})
             })
             .catch(err => {
                 console.log(err.response.data)
@@ -78,11 +80,12 @@ function Chat() {
         <div>
             {isAuthorized ? (
                 <div>
+                    <Header/>
                     <div className='chat-box' id='chat'>
                         { messages.map((msg) => {
                             return (
                                 <div key={msg._id} className='message-box'>
-                                    <div>
+                                    <div className='message-info'>
                                         <p className='chat-username'>{getUsername(msg._id)}</p>
                                         <p className='timestamp'>{formatTimestamp(msg.createdAt)}</p>
                                     </div>
@@ -93,9 +96,14 @@ function Chat() {
                         }
                         <div ref={messagesEndRef} />
                     </div>
-                    <form onSubmit={handleSubmit}>
-                        <input type='text' onChange={handleChange}/>
-                        <input type='submit' value='Send!'/>
+                    <form className='new-message' onSubmit={handleSubmit}>
+                        <input type='text' className='new-message-box' onChange={handleChange}/>
+                        <label>
+                            <input type='submit'/>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M2,21L23,12L2,3V10L17,12L2,14V21Z" />
+                            </svg>
+                        </label>
                     </form>
                 </div>
             ) : (<div>Access forbidden 401</div>)}

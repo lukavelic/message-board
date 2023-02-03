@@ -1,23 +1,97 @@
+:root {
+    --background-light: rgb(140, 147, 168);
+    --background-dark: rgb(39, 71, 78);
+    --message-box: rgb(39, 71, 78);
+    --text-color: rgb(255,255,255);
+}
+
+body {
+    background-color: var(--background-light);
+}
+
 .chat-box {
-    height: 300px;
-    width: 300px;
+    height: calc(100vh - 64px);
+    width: 100vw;
     overflow-y: scroll;
 
-    padding: 24px;
+    /* padding: 24px; */
 }
 
 .message-box {
-    border: 1px solid;
     border-radius: 15px;
 
-    margin: 8px;
+    margin: 12px;
+
+    background-color: var(--message-box);
+    color: var(--text-color);
 }
 
+.message-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 12px;
+
+    height: 18px;
+}
+    .timestamp {
+        font-size: 0.8rem;
+    }
+
 .chat-username {
-    font-size: 0.75rem;
+    font-size: 1rem;
     font-weight: 600;
 }
 
 .chat-text {
-    padding-left: 5px;
+    margin: 0;
+    padding: 12px;
+    padding-top: 0px;
+
+    height: 100%;
+
+    overflow-wrap: break-word;
 }
+
+.new-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 64px;
+
+    background-color: var(--background-dark);
+}
+
+.new-message-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+
+    height: 60%;
+    width: 80%;
+    margin: 5px;
+
+    padding: 0px 12px 0px 12px;
+
+    border: none;
+    border-radius: 15px;
+
+    font-size: 1rem;
+}
+
+form.new-message input[type="submit"] { 
+    display: none;
+}
+
+    svg {
+        height: 36px;
+
+        padding-left: 10px;
+
+        fill: white;
+    }
