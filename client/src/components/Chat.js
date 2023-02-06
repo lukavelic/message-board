@@ -35,6 +35,27 @@ function Chat() {
     }, [isMessageSent]);
 
     useEffect(() => {
+        const updateTimer = () => { setTimeout(() => {
+            axios.get('/chat', {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+            })
+            .then((res) => {
+                setIsAuthorized(true)
+                setMessages(res.data)
+                console.log(messages)
+
+                updateTimer();
+            })
+            .catch(err => console.log(err))
+        }, 1500)
+        }
+
+        updateTimer();
+    }, [])
+ 
+    useEffect(() => {
         scrollToBottom()
     }, [messages])
 
