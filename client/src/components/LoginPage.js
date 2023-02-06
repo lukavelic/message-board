@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
+import Header from './Header';
 import Cookies from 'universal-cookie';
 import axios from 'axios';
 
@@ -88,21 +89,19 @@ function LoginPage() {
     };
 
     return (
-        <div>
+        <div className='app'>
+            <Header/>
             {isLoggedIn ? (<Navigate to='/chat'/>) : (
                 <div>
-                    <form onSubmit={handleSubmit}>
+                    <form className='login-form' onSubmit={handleSubmit}>
                         <div className='input-wrapper'>
                             <label htmlFor='username' >Username</label>
                             <input type='text' name='username' required onChange={handleChange}/>
                             <label htmlFor='password'>Password</label>
                             <input type='password' name='password' required onChange={handleChange}/>
                         </div>
-                        <input type='submit' value='Login'/>
+                        <input type='submit' className='button' value='Login'/>
                     </form>
-                    <a href="/">
-                        Home
-                    </a>
                 </div>
             )}
         </div>

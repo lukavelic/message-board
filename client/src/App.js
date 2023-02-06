@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import RegisterForm from './components/RegisterForm';
+import Header from './components/Header';
 import { Navigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -68,7 +69,8 @@ function App() {
   }
 
   return (
-    <div>
+    <div className='app'>
+      <Header/>
       {isRegistered ? (<Navigate replace to='/loginPage'/>) : (<RegisterForm submitHandler={handleSubmit} changeHandler={handleChange}/>)}
     </div>
   )

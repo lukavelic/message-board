@@ -1,4 +1,5 @@
 import React from 'react';
+import './RegisterForm.css'
 
 function RegisterForm(props) {
 
@@ -12,7 +13,7 @@ function RegisterForm(props) {
     }
 
     return (
-        <div>
+        <div className='register-box'>
             <form onSubmit={submitHandler}>
                 <div className='input-wrapper'>
                     <label htmlFor='username' >Username</label>
@@ -20,10 +21,11 @@ function RegisterForm(props) {
                     <label htmlFor='password'>Password</label>
                     <input type='password' name='password' required onChange={changeHandler}/>
                 </div>
-                <input type='submit' value='Register!'/>
+                <input type='submit' className='button' value='Register!'/>
             </form>
+            <span className='login-text'>Already have an account?</span>
             <a href="/loginPage">
-                <button>Login!</button>
+                <button className='button'>Login!</button>
             </a>
         </div>
     )

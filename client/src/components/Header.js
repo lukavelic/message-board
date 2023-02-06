@@ -3,7 +3,9 @@ import './Header.css';
 
 function Header() {
   return (
-    <header>RaspApp</header>
+    <a className='header' href="/">
+      <header>RaspApp</header>
+    </a>
   )
 }
 

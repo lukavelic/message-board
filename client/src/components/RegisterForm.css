@@ -1,0 +1,58 @@
+.app {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100vh;
+}
+
+.register-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: column;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: column;
+}
+
+.input-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: column;
+}
+
+.input-wrapper input {
+    height: 24px;
+    width: 200px;
+
+    margin: 12px;
+    padding-left: 10px;
+
+    border: none;
+    border-radius: 10px;
+
+    outline: none;
+}
+
+.button {
+    width: 120px;
+    height: 36px;
+
+    margin: 12px;
+
+    border-radius: 15px;
+    border: none;
+}
+
+.login-form {
+    margin-top: 96px;
+}
