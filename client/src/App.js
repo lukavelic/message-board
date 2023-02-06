@@ -45,7 +45,7 @@ function App() {
         setIsRegistered(true);
       })
       .catch(err => {
-        console.log(err.response.data)
+        console.log(err.res.data)
       })
 
 
