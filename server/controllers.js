@@ -55,6 +55,7 @@ exports.login = async (req, res) => {
                 res.status(200).send({
                     msg: 'Login successful',
                     username: user.username,
+                    userId: user._id,
                     token,
                 });
             })
@@ -73,6 +74,7 @@ exports.msg = async (req, res) => {
     const msg = new Message({
         msg: req.body.msg,
         userId: req.body.userId,
+        username: req.body.username,
     })
 
     msg.save()

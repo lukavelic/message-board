@@ -8,6 +8,10 @@ const messageSchema = new mongoose.Schema({
     userId: {
         type: String,
         required: true
+    },
+    username: {
+        type: String,
+        required: true
     }
 },  {timestamps: true }, 
     {collection: 'messages' }

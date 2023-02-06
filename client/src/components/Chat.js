@@ -41,7 +41,8 @@ function Chat() {
     const handleChange = (e) => {
         setNewMessage({
             msg: e.target.value,
-            userId: '63dbcc1e486b7745c897daad'
+            userId: cookies.cookies.userId,
+            username: cookies.cookies.username,
         });
         console.log(newMessage)
     }
@@ -62,9 +63,9 @@ function Chat() {
     };
 
     // to be implemented
-    const getUsername = (id) => {
-        return 'luka'
-    }
+    // const getUsername = (id) => {
+    //     return 'luka'
+    // }
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
@@ -86,7 +87,7 @@ function Chat() {
                             return (
                                 <div key={msg._id} className='message-box'>
                                     <div className='message-info'>
-                                        <p className='chat-username'>{getUsername(msg._id)}</p>
+                                        <p className='chat-username'>{msg.username}</p>
                                         <p className='timestamp'>{formatTimestamp(msg.createdAt)}</p>
                                     </div>
                                     <p className='chat-text'>{msg.msg}</p>

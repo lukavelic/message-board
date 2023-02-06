@@ -27,7 +27,13 @@ function LoginPage() {
                     path: '/',
                 });
 
-                console.log(cookies.cookies.TOKEN)
+                cookies.set('userId', res.data.userId, {
+                    path: '/',
+                });
+
+                cookies.set('username', res.data.username, {
+                    path: '/',
+                });
 
                 setIsLoggedIn(true);
                 axios.defaults.headers.common['Authorization'] = 'Bearer' + res.data.token;
