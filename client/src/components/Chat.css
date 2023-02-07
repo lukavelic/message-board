@@ -62,6 +62,8 @@ body {
     justify-content: center;
     align-items: center;
 
+    flex-direction: row;
+
     height: 64px;
 
     background-color: var(--background-dark);
